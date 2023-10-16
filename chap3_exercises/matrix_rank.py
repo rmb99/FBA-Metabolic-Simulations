@@ -6,7 +6,7 @@ import numpy as np
 
 def calculate_aero_rank():
     # Load the iAF1260 model, using xml format of iAF1260 model from ref[16]
-    model = cobra.io.read_sbml_model("models/iAF1260.xml")
+    model = cobra.io.read_sbml_model("../models/iAF1260.xml")
 
     # Set the model to aerobic conditions and maximize biomass:
     model.reactions.get_by_id("EX_o2_e").lower_bound = -1000
@@ -24,7 +24,7 @@ def calculate_aero_rank():
 
 
 def calculate_anaero_rank():
-    model_anaero = cobra.io.read_sbml_model("models/iAF1260.xml")
+    model_anaero = cobra.io.read_sbml_model("../models/iAF1260.xml")
 
     #  Set the model to anaerobic conditions and maximize biomass
     model_anaero.reactions.get_by_id("EX_o2_e").lower_bound = 0
