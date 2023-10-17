@@ -45,7 +45,7 @@ def analyse_fva(model_path):
     plt.xlabel('Biomass Constraint')
     plt.ylabel('Succinate Production Flux')
     plt.legend()
-    plt.savefig('../chap3_exercises/results/succinate_production.png', format='png', dpi=300)
+    plt.savefig('../results/iAF1260/succinate_production.png', format='png', dpi=300)
     plt.show()
 
     plt.close()

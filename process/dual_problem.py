@@ -3,22 +3,24 @@ from scipy.optimize import linprog
 import cobra
 
 from utils import load_model
+from adaptor.fba import Fba
 
 
 def calculate_primal_problem(model_path):
+
     model = load_model(model_path)
     # Set environmental conditions, e.g., anaerobic
     model.reactions.get_by_id("EX_o2_e").lower_bound = -1
 
     # Optimize the primal problem (Maximize biomass)
     biomass_reaction = model.reactions.get_by_id("BIOMASS_Ec_iAF1260_core_59p81M")
-    model.objective = biomass_reaction
-    primal_solution = model.optimize()
-
+    fba = Fba(model, biomass_reaction)
+    primal_solution = fba.maximize()
     return primal_solution
 
 
 def calculate_dual_solution(model_path):
+
     model = load_model(model_path)
 
     # Create the stoichiometric matrix
